@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .reset-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="reset-form col-md-6">
+            <h2 class="mt-4 mb-4 text-center">Password Reset</h2>
+            <form method="POST" action="/reset-pass/{{data.email}}" style="max-width:500px;">
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input id="newPassword" type="password" name="pass" class="form-control"
+                        placeholder="Enter new password"
+                        pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*?[#!@$%^&*_+-=]).{8,32}$"
+                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and be at least 8 characters long"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="conpass" class="form-control"
+                        placeholder="Confirm new password"
+                        pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*?[#!@$%^&*_+-=]).{8,32}$"
+                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and be at least 8 characters long"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
