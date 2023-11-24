@@ -1,5 +1,5 @@
 require('dotenv').config();
-const mogoose = require('mongoose');
+const mongoose = require('mongoose');
 // require('./src/db/conn');
 
 const express = require('express');
@@ -12,7 +12,7 @@ const { checkUser } = require('./src/functions/userFunctions');
 const app = express();
 const port = process.env.PORT || 8000;
 
-mogoose.connect(process.env.DATABASE_URL, {
+mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // useCreateIndex: true
