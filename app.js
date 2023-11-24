@@ -1,5 +1,6 @@
 require('dotenv').config();
-require('./src/db/conn');
+const mogoose = require('mongoose');
+// require('./src/db/conn');
 
 const express = require('express');
 const session = require('express-session');
@@ -10,6 +11,20 @@ const { checkUser } = require('./src/functions/userFunctions');
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+mogoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // useCreateIndex: true
+}).then(() => {
+    console.log("Connection successful");
+    app.listen(port, () => {
+        console.log(`Server is running at port ${port}`);
+    });
+}).catch((err) => {
+    console.log(`No connection, error: ${err}`);
+});
+
 
 const static_path = path.join(__dirname, "./public");
 const templatePath = path.join(__dirname, "./templates/views");
@@ -79,8 +94,3 @@ app.use(searchFacultyRouter);
 
 const removeDataRouter = require("./src/routers/removeData");
 app.use(removeDataRouter);
-
-
-app.listen(port, () => {
-    console.log(`Server is running at port ${port}`);
-});
