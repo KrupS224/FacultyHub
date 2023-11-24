@@ -6,7 +6,7 @@ require('dotenv').config(); // require dotenv
 const port = process.env.PORT || 8000;
 
 // Connect to database
-mogoose.connect("mongodb://127.0.0.1:27017/FacultyHub" || process.env.DATABASE_URL || , {
+mogoose.connect("mongodb://127.0.0.1:27017/FacultyHub" || process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // useCreateIndex: true
