@@ -83,11 +83,12 @@
                     <input type="file" name="admin_img" style="margin-left: 20px;" id="input_file" accept="image/*">
                 </div>
                 {{!-- Second div --}}
-                <div id="university_details" style="display: none;">
+                <div id="university_details" style="display: none; flex-direction: column;">
                     <label for="name">University Name</label>
                     <input class="ip" type="text" name="university" required>
                     <label for="email">Address</label>
-                    <textarea class="ip" name="address" style="height: 150px;" id="texta" maxlength="150"></textarea>
+                    <textarea class="ip" name="address" style="height: 150px;" id="texta" maxlength="150"
+                        minlength="10"></textarea>
                     <label for="university">University Logo</label>
                     <input type="file" name="university_img" style="margin: 2px 0px 2px 20px;" accept="image/*"
                         required>
@@ -95,7 +96,7 @@
           <input type="file" name="Government Proof" style="margin: 2px 0px 2px 20px;"> --}}
                 </div>
                 {{!-- This button html is also changed by onclick --}}
-                <div class="bt">
+                <div class="bt" style="display: flex;">
                     <button type="button" value="Submit" id="green" onclick="showUniversityDetails()">Next</button>
                     <button type="submit" value="Submit" id="submit" style="display: none;">Submit</button>
 
@@ -106,7 +107,7 @@
                     Already have an account? <a href="/signin">sign in.</a>
                 </p>
             </form>
-            <img id="up" src="images/sign_up.png" alt="sign_up">
+            <img id="up" src="../../images/sign_up.png" alt="sign_up">
         </section>
     </main>
     {{>footer}}
