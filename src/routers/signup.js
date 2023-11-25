@@ -54,7 +54,7 @@ async function registerUser(data, req, res) {
         }
 
         // Check if 'admin_img' is present in the request
-        if (req.files && req.files['admin_img']) {
+        if (req.files && req.files['admin_img'] && req.files['admin_img'].buffer.length > 0) {
             updateFields.image = {
                 data: req.files['admin_img'][0].buffer.toString('base64'),
                 contentType: req.files['admin_img'][0].mimetype
@@ -62,7 +62,7 @@ async function registerUser(data, req, res) {
         }
 
         // Check if 'university_img' is present in the request
-        if (req.files && req.files['university_img']) {
+        if (req.files && req.files['university_img'] && req.files['university_img'].buffer.length > 0) {
             updateFields.university_img = {
                 data: req.files['university_img'][0].buffer.toString('base64'),
                 contentType: req.files['university_img'][0].mimetype
