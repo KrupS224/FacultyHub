@@ -43,23 +43,35 @@ async function registerUser(data, req, res) {
     console.log(OTP);
 
     try {
-        const tempAdmin = new Admin({
+        const updateFields = {
             name: adminName,
             email: email,
             password: password,
             OTP: OTP,
             phone: mobile_no,
             university: university,
-            image: {
+            address: address,
+        }
+
+        // Check if 'admin_img' is present in the request
+        if (req.files && req.files['admin_img']) {
+            updateFields.image = {
                 data: req.files['admin_img'][0].buffer.toString('base64'),
                 contentType: req.files['admin_img'][0].mimetype
-            },
-            university_img: {
+            };
+        }
+
+        // Check if 'university_img' is present in the request
+        if (req.files && req.files['university_img']) {
+            updateFields.university_img = {
                 data: req.files['university_img'][0].buffer.toString('base64'),
                 contentType: req.files['university_img'][0].mimetype
-            },
-            address: address,
-        });
+            };
+        }
+        // log(updateFields);
+
+        const tempAdmin = new Admin({ ...updateFields });
+        // log(tempAdmin);
 
         // Save the user
         if (!userExists) {
@@ -73,7 +85,6 @@ async function registerUser(data, req, res) {
         setTimeout(userDelete, 5 * 60 * 1000, email);
 
         // Redirect to the OTP verification page
-        // req.session.signupStep = 2;
         res.redirect('/signup/verifyotp');
 
     } catch (error) {

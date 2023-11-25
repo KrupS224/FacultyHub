@@ -68,28 +68,29 @@
                     <label for="Password">Password</label>
                     <input class="ip" type="password" name="password" id="Password"
                         pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*?[#!@$%^&*_+-=]).{8,32}$"
-                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and be at least 8 characters long"
+                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and the length of the pasword should be between 8 to 32"
                         required>
                     <span id="passwordError" style="color: red; font-size: smaller"></span>
                     <label for="cPassword">Conform Password</label>
                     <input class="ip" type="password" name="cPassword" id="cPassword"
                         pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*?[#!@$%^&*_+-=]).{8,32}$"
-                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and be at least 8 characters long"
+                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and the length of the pasword should be between 8 to 32"
                         required>
                     <span id="cPasswordError" style="color: red; font-size: smaller"></span>
                     <label for="mobile_no">Mobile no</label>
                     <input class="ip" type="tel" name="mobile_no" pattern="[0-9]{10}" required>
                     <label for="university">Admin Photo</label>
-                    <input type="file" name="admin_img" style="margin-left: 20px;" id="input_file">
+                    <input type="file" name="admin_img" style="margin-left: 20px;" id="input_file" accept="image/*">
                 </div>
                 {{!-- Second div --}}
                 <div id="university_details" style="display: none;">
                     <label for="name">University Name</label>
                     <input class="ip" type="text" name="university" required>
                     <label for="email">Address</label>
-                    <textarea class="ip" name="address" style="height: 150px;" id="texta"></textarea>
+                    <textarea class="ip" name="address" style="height: 150px;" id="texta" maxlength="150"></textarea>
                     <label for="university">University Logo</label>
-                    <input type="file" name="university_img" style="margin: 2px 0px 2px 20px;" required>
+                    <input type="file" name="university_img" style="margin: 2px 0px 2px 20px;" accept="image/*"
+                        required>
                     {{!-- <label for="university">Government Proof</label>
           <input type="file" name="Government Proof" style="margin: 2px 0px 2px 20px;"> --}}
                 </div>

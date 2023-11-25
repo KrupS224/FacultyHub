@@ -26,8 +26,6 @@ form{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 35vw;
-    height: 50vh;
 }
 label{
     font-size: 3vh;
@@ -84,7 +82,6 @@ input[type=radio] {
 }
 .bt{
     text-align: center;
-    margin-right: 3vw;
 }
 
 .bt button{
@@ -100,10 +97,12 @@ input[type=radio] {
 #green:hover{
     background-color: green;
     font-weight: bold;
+    color: white;
 }
 #red:hover{
     background-color: red;
     font-weight: bold;
+    color: white;
 }
 .bt button:active{
     box-shadow: 0 0 2px darkslategray;
