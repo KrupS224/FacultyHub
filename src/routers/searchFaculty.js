@@ -47,8 +47,10 @@ router.get('/search-faculty', setOption, async (req, res) => {
                 query.name = { $regex: search_query, $options: 'i' };
             }
         }
-    } catch (error) {
 
+        query.verified = true;
+    } catch (error) {
+        console.log("Error showing searach results. Error: ", error);
     }
     // console.log(query);
     // Calculate the skip value for pagination

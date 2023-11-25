@@ -117,7 +117,7 @@ async function handleAccountLock(username, role, db, req, res) {
     }
 
     const port = process.env.PORT || 8000;
-    const resetLink = `http://localhost:${port}/unlock-account?email=${username}?&role=${role}?&hash=${otp}`;
+    const resetLink = `https://facultyhub.onrender.com/unlock-account?email=${username}?&role=${role}?&hash=${otp}`;
     // log(resetLink);
     await sendEmailLock(username, resetLink);
 

@@ -75,7 +75,7 @@ router.post("/forgot-password", async (req, res) => {
         } catch (error) { log(error); }
 
         const port = process.env.PORT || 8000;
-        const resetLink = `http://localhost:${port}/reset-pass?email=${email}?&role=${role}?&hash=${otp}`;
+        const resetLink = `https://facultyhub.onrender.com/reset-pass?email=${email}?&role=${role}?&hash=${otp}`;
         log(resetLink);
 
         await sendEmailPassReset(email, resetLink);

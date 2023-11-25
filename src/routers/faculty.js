@@ -130,7 +130,7 @@ router.post("/addfaculty", upload.fields([{ name: 'faculty_img', maxCount: 1 }, 
         // send email before registring
         const otp = generateOTP(30);
         const port = process.env.PORT || 8000;
-        const verifyLink = `http://localhost:${port}/verify-account?email=${email}?&hash=${otp}`
+        const verifyLink = `https://facultyhub.onrender.com/verify-account?email=${email}?&hash=${otp}`
 
         const verifyData = new verifyFaculty({
             email,

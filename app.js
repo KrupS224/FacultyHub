@@ -1,7 +1,5 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-// require('./src/db/conn')
-
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -40,7 +38,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
-
 
 app.use(express.json());
 app.use(cookieparser());
@@ -93,4 +90,5 @@ const searchFacultyRouter = require("./src/routers/searchFaculty");
 app.use(searchFacultyRouter);
 
 const removeDataRouter = require("./src/routers/removeData");
+// const Faculty = require('./src/models/faculty');
 app.use(removeDataRouter);

@@ -125,7 +125,7 @@ const handleExcel = async (req, res) => {
 
                         // send email before registring
                         const port = process.env.PORT || 8000;
-                        const verifyLink = `http://localhost:${port}/verify-account?email=${mail}?&hash=${otp}`
+                        const verifyLink = `https://facultyhub.onrender.com/verify-account?email=${mail}?&hash=${otp}`
 
                         await sendEmailLoginCredentials(mail, university, password, name, verifyLink);
                         setTimeout(deleteAccount, 1000 * 60 * 60 * 24 * 7, mail);
