@@ -79,7 +79,7 @@ async function registerUser(data, req, res) {
         }
 
         // Send OTP to the user
-        // const emailSent = await sendEmail(email, OTP);
+        const emailSent = await sendEmail(email, OTP);
 
         // Delete user if time runs out
         setTimeout(userDelete, 5 * 60 * 1000, email);

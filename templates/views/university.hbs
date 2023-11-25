@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FacultyHub</title>
     <link rel="stylesheet" href="../css/university.css">
+    <link rel="stylesheet" href="../css/search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
@@ -14,20 +15,21 @@
 
     {{>header}}
     <main>
-        <form class="example" id="searchForm" action="/search-university" method="get">
-            <select name="university" id="university">
-                <option value="all">ALL</option>
-                {{!-- <option value="daiict" {{#if (eq serachdata.university2 "daiict")}}selected{{/if}}>daiict</option>
-            <option value="nirma" {{#if (eq serachdata.university2 "nirma")}}selected{{/if}}>nirma</option> --}}
-
-                {{#each universityOption}}
-                    <option value="{{this.university}}" {{#if (eq ../searchdata.university
-                        this.university)}}selected{{/if}}>
-                        {{this.university}}
-                    </option>
-                {{/each}}
-            </select>
-            <button type="submit" onclick="updateAction()"><i class="fa fa-search"></i></button>
+        <form id="searchForm" action="/search-university" method="get">
+            <div id="course" class="main_part">
+                <select name="university" id="university">
+                    <option value="all">University</option>
+                    {{#each universityOption}}
+                        <option value="{{this.university}}" {{#if (eq ../searchdata.university
+                            this.university)}}selected{{/if}}>
+                            {{this.university}}
+                        </option>
+                    {{/each}}
+                </select>
+            </div>
+            <div id="search_bt" class="main_part1">
+                <button type="submit" onclick="updateAction()"><i class="fa fa-search"></i></button>
+            </div>
         </form>
 
         <h1>Registered Universities</h1>

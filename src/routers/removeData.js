@@ -19,12 +19,21 @@ router.delete("/admin-profile-remove/:id", async (req, res) => {
             try {
                 const admin = await Admin.findById(profileId);
                 const university = admin.university;
-                await Admin.deleteOne({ _id: profileId });
-                log("Admin removed successfully.");
+
+                const faculties = await Faculty.find({ institute: university });
+                await Promise.all(faculties.map(async (faculty) => {
+                    const facultyEmail = faculty.email;
+                    await sendAccountRemovalEmail(facultyEmail);
+                }));
 
                 // deleting all faculties assosiated with admin
                 await Faculty.deleteMany({ institute: university });
                 log("Faculties removed successfully");
+
+                await Admin.deleteOne({ _id: profileId });
+                log("Admin removed successfully.");
+
+                res.sendStatus(200);
 
             } catch (error) {
                 console.log(error);
@@ -32,9 +41,6 @@ router.delete("/admin-profile-remove/:id", async (req, res) => {
                     message: "Internal server error"
                 });
             }
-
-
-            res.sendStatus(200);
         }
 
     } catch (err) {

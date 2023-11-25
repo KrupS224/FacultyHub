@@ -31,10 +31,15 @@
                 <div class="user-card-info">
                     <h2>Faculty Name: {{faculty.name}} </h2>
                     <p><span>Institute: {{faculty.institute}}</span></p>
+                    {{#if faculty.department}}
+                        <p><span>Deaprtment: {{faculty.department}}</span></p>
+                    {{/if}}
                     <p><span>Email-address: {{faculty.email}}</span> </p>
                     <p><span>Contact No: {{faculty.contactNo}} </span></p>
                     <p><span>Address: {{faculty.address}} </span></p>
-                    <p><span>Website: <a href="{{faculty.website}}">{{faculty.website}}</a></span></p>
+                    {{#if faculty.website}}
+                        <p><span>Website: <a href="{{faculty.website}}">{{faculty.website}}</a></span></p>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -42,7 +47,16 @@
         <div class="container">
             <div class="tab_box">
                 <button class="tab_btn">Details</button>
-                <button class="tab_btn">Publication</button>
+                <button class="tab_btn">Education</button>
+                {{#if faculty.coursesTaught}}
+                    <button class="tab_btn">Teachings</button>
+                {{/if}}
+                {{#if faculty.specialalization}}
+                    <button class="tab_btn">Specializations</button>
+                {{/if}}
+                {{#if faculty.publications}}
+                    <button class="tab_btn">publications</button>
+                {{/if}}
                 {{#if faculty.internship}}
                     <button class="tab_btn">Internships</button>
                 {{/if}}
@@ -51,13 +65,29 @@
             <div class="content_box">
                 <div class="content">
                     <h2>Details</h2>
-                    <p><b>Education:</b> {{faculty.education}}</p>
-                    <p><b>Field of specialalization:</b> {{faculty.specialization}}</p>
-                    <p><b>Courses Taught:</b> {{faculty.coursesTaught}}</p>
+                    <p><b>Education:</b>{{faculty.education}}</p>
                 </div>
                 <div class="content">
-                    <h2>Publication</h2>
-                    {{faculty.publications}}
+                    <b>Teachings:</b>
+                    <ul>
+                        {{#each faculty.coursesTaught}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="content">
+                    <b>Field of specialalization:</b>
+                    {{#each faculty.specialalization}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </div>
+                <div class="content">
+                    <b>Publications:</b>
+                    <ul>
+                        {{#each faculty.publications}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
                 </div>
                 <div class="content">
                     <h2>Internships</h2>
@@ -66,6 +96,7 @@
                     {{/each}}
                 </div>
             </div>
+        </div>
         </div>
 
         <script>

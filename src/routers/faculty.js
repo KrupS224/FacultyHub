@@ -16,7 +16,7 @@ const { deleteAccount } = require('../functions/adminLockUpdate');
 
 
 router.get("/addfaculty", adminAuth, async (req, res) => {
-    const filePath = path.join(__dirname, "../../templates/views/", "addFaculty");
+    const filePath = path.join(__dirname, "../../templates/views/", "addfaculty");
     res.render(filePath);
 });
 
@@ -128,19 +128,19 @@ router.post("/addfaculty", upload.fields([{ name: 'faculty_img', maxCount: 1 }, 
         log(pass);
 
         // send email before registring
-        // const otp = generateOTP(30);
-        // const port = process.env.PORT || 8000;
-        // const verifyLink = `http://localhost:${port}/verify-account?email=${email}?&hash=${otp}`
+        const otp = generateOTP(30);
+        const port = process.env.PORT || 8000;
+        const verifyLink = `http://localhost:${port}/verify-account?email=${email}?&hash=${otp}`
 
-        // const verifyData = new verifyFaculty({
-        //     email,
-        //     link: otp
-        // });
+        const verifyData = new verifyFaculty({
+            email,
+            link: otp
+        });
 
-        // await verifyData.save();
+        await verifyData.save();
 
-        // await sendEmailLoginCredentials(email, data.university, pass, facultyName, verifyLink);
-        // setTimeout(deleteAccount, 1000 * 60 * 60 * 24 * 7, email);
+        await sendEmailLoginCredentials(email, data.university, pass, facultyName, verifyLink);
+        setTimeout(deleteAccount, 1000 * 60 * 60 * 24 * 7, email);
 
         res.status(200).send(`<script>alert("Faculty Added successfully"); window.location.href="/addfaculty"</script>`);
 

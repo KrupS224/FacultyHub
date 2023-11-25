@@ -75,22 +75,23 @@ const handleExcel = async (req, res) => {
 
                 worksheet.eachRow({ includeEmpty: true }, async (row, rowNumber) => {
                     if (rowNumber > 1) {
+
                         const password = generateRandomPassword();
                         const facultyData = {
                             // this values changes according to the columns of excel File
                             // 1 based indexing
                             name: row.getCell(1).value,
-                            institute: data.university,
-                            email: row.getCell(5).value,
-                            address: row.getCell(4).value,
-                            password: generateRandomPassword(),
-                            education: row.getCell(2).value,
-                            website: row.getCell(6).value,
-                            publications: row.getCell(8).value,
-                            contactNo: row.getCell(3).value,
+                            contactNo: row.getCell(2).value,
+                            address: row.getCell(3).value,
+                            email: row.getCell(4).value,
+                            education: row.getCell(5).value,
+                            coursesTaught: row.getCell(6).value,
                             specialization: row.getCell(7).value,
-                            coursesTaught: row.getCell(9).value,
-                            // department: row.getCell(3).value,
+                            website: row.getCell(8).value,
+                            publications: row.getCell(9).value,
+                            department: row.getCell(11).value,
+                            institute: data.university,
+                            password: password,
                         };
 
                         const imageUrl = row.getCell(10).value;
@@ -110,24 +111,24 @@ const handleExcel = async (req, res) => {
                         }
 
 
-                        // const mail = row.getCell(5).value;
-                        // const university = data.university;
-                        // const name = row.getCell(1).value;
-                        // const otp = generateOTP(30);
+                        const mail = row.getCell(5).value;
+                        const university = data.university;
+                        const name = row.getCell(1).value;
+                        const otp = generateOTP(30);
 
                         // add data into verifyFaculty schema
-                        // const verifyData = new verifyFaculty({
-                        //     email: mail,
-                        //     link: otp
-                        // });
-                        // await verifyData.save();
+                        const verifyData = new verifyFaculty({
+                            email: mail,
+                            link: otp
+                        });
+                        await verifyData.save();
 
                         // send email before registring
-                        // const port = process.env.PORT || 8000;
-                        // const verifyLink = `http://localhost:${port}/verify-account?email=${mail}?&hash=${otp}`
+                        const port = process.env.PORT || 8000;
+                        const verifyLink = `http://localhost:${port}/verify-account?email=${mail}?&hash=${otp}`
 
-                        // await sendEmailLoginCredentials(mail, university, password, name, verifyLink);
-                        // setTimeout(deleteAccount, 1000 * 60 * 60 * 24 * 7, mail);
+                        await sendEmailLoginCredentials(mail, university, password, name, verifyLink);
+                        setTimeout(deleteAccount, 1000 * 60 * 60 * 24 * 7, mail);
 
 
                         saveFacultyPromises.push(Faculty.create(facultyData));

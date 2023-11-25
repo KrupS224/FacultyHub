@@ -30,19 +30,19 @@ const facultySchema = new mongoose.Schema({
     },
     education: {
         type: String,
-        default: ""
+        required: false
     },
     coursesTaught: {
         type: String,
-        default: ""
+        required: false
     },
     specialization: {
         type: String,
-        default: ""
+        required: false
     },
     website: {
         type: String,
-        default: ""
+        required: false
     },
     publications: {
         type: [String],

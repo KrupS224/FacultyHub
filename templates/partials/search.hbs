@@ -5,31 +5,22 @@
 <div id="search" style="margin-top: 10px;">
     <form id="searchForm" action="/search-faculty" method="get">
         <div id="search_first">
-            <input type="text" placeholder="Search.." name="search2" value="{{searchdata.search_query}}"
-                class="main_part">
+            <input type="text" placeholder="Search.." name="search2" value="{{searchdata.search_query}}" class="search">
         </div>
         {{!-- <label for="location">location:</label>
         <input type="text" name="location" id="location">
         <br> --}}
         <div id="course" class="main_part">
-            <label for="course">Department:</label>
             <select id="course2" name="course">
-                <option value="all">ALL</option>
+                <option value="all">Department</option>
                 {{#each courseOption}}
                     <option value="{{this}}" {{#if (eq ../searchdata.department this)}}selected{{/if}}>
                         {{this}}
                     </option>
                 {{/each}}
             </select>
-        </div>
-        <div id="university" class="main_part">
-            <label for="university">University:</label>
             <select name="university" id="university2">
-                <option value="all">ALL</option>
-                {{!-- <option value="daiict" {{#if (eq serachdata.university2 "daiict" )}}selected{{/if}}>daiict
-                </option>
-                <option value="nirma" {{#if (eq serachdata.university2 "nirma" )}}selected{{/if}}>nirma</option> --}}
-
+                <option value="all">University</option>
                 {{#each universityOption}}
                     <option value="{{this.university}}" {{#if (eq ../searchdata.university
                         this.university)}}selected{{/if}}>
@@ -37,6 +28,8 @@
                     </option>
                 {{/each}}
             </select>
+        </div>
+        <div id="search_bt" class="main_part1">
             <button type="submit" onclick="updateAction()"><i class="fa fa-search"></i></button>
         </div>
     </form>
