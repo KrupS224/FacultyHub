@@ -32,7 +32,7 @@ router.post("/signin", async (req, res) => {
 
         if (!result) {
             log("Result not found");
-            return res.send(`<script>alert("Invalid Details"); window.history.back();</script>`);
+            return res.status(401).send(`<script>alert("Invalid Details"); window.history.back();</script>`);
         }
 
         if (result && result.lock) {
@@ -93,7 +93,7 @@ router.post("/signin", async (req, res) => {
 
 async function handleInvalidDetails(user, res) {
     log("Invalid details");
-    res.send(`<script>alert("Invalid Details, remaining attempts before your account gets locked: ${5 - user.count}"); window.history.back();</script>`);
+    res.status(401).send(`<script>alert("Invalid Details, remaining attempts before your account gets locked: ${5 - user.count}"); window.history.back();</script>`);
 }
 
 async function handleAccountLock(username, role, db, req, res) {
@@ -121,7 +121,7 @@ async function handleAccountLock(username, role, db, req, res) {
     // log(resetLink);
     await sendEmailLock(username, resetLink);
 
-    res.status(200).send(`<script>alert("Your account is locked, reset link is sent to your email."); window.history.back(); window.location.href="/signin";</script>`);
+    res.status(401).send(`<script>alert("Your account is locked, reset link is sent to your email."); window.history.back(); window.location.href="/signin";</script>`);
 }
 
 module.exports = router; // export router
