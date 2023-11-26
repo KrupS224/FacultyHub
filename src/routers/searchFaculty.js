@@ -9,7 +9,7 @@ const path = require('path');
 
 router.get("/search", setOption, async (req, res) => {
     const filePath = path.join(__dirname, '../../templates/views/', 'search_faculty');
-    res.render(filePath);
+    res.status(200).render(filePath);
 });
 
 router.get('/search-faculty', setOption, async (req, res) => {
@@ -54,7 +54,7 @@ router.get('/search-faculty', setOption, async (req, res) => {
     }
     // console.log(query);
     // Calculate the skip value for pagination
-    //  const skip = (page - 1) * perPage;
+    // const skip = (page - 1) * perPage;
 
     // Search the database with pagination and render the results in the search template
     const data = await Faculty.find(query)

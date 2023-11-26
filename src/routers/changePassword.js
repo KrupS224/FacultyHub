@@ -12,7 +12,7 @@ const saltRounds = 10;
 
 router.get("/change-password", requireAuth, (req, res) => {
     filePath = path.join(__dirname, '../../templates/views/', 'changepassword');
-    res.render(filePath);
+    res.status(200).render(filePath);
 })
 
 router.post("/change-password", async (req, res) => {

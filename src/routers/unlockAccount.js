@@ -52,7 +52,7 @@ router.get("/verify-account", async (req, res) => {
             if (user) {
                 await Faculty.updateOne({ email: emailSlice }, { verified: true });
                 await verifyFaculty.deleteOne({ email: emailSlice });
-                res.send(`<script>alert("Account verified successfully"); window.location.href = "/signin";</script>`);
+                res.status(200).send(`<script>alert("Account verified successfully"); window.location.href = "/signin";</script>`);
             } else {
                 return res.status(400).json({
                     message: "You have provided an invalid verify link"
@@ -71,7 +71,5 @@ router.get("/verify-account", async (req, res) => {
         });
     }
 });
-
-
 
 module.exports = router; // export router

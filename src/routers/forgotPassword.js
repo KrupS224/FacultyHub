@@ -13,7 +13,7 @@ const saltRounds = 10;
 
 router.get("/forgotlink", async (req, res) => {
     const filePath = path.join(__dirname, '../../templates/views', 'forgot_pass');
-    res.render(filePath);
+    res.status(200).render(filePath);
 });
 
 router.get("/reset-pass", async (req, res) => {
@@ -22,7 +22,7 @@ router.get("/reset-pass", async (req, res) => {
 
         if (!email || !hash || !role) {
             return res.status(400).json({
-                message: "Invalid reset link 1"
+                message: "Invalid reset link"
             });
         }
 
@@ -35,7 +35,7 @@ router.get("/reset-pass", async (req, res) => {
             return res.render("reset_pass.hbs", { data });
         } else {
             return res.status(400).json({
-                message: "Invalid reset link 2"
+                message: "Invalid reset link"
             });
         }
     } catch (error) {
@@ -97,7 +97,7 @@ router.post("/reset-pass/:id", async (req, res) => {
 
     if (!user) {
         return res.status(400).json({
-            message: "Invalid reset link 3"
+            message: "Invalid reset link"
         });
     }
 
@@ -122,7 +122,7 @@ router.post("/reset-pass/:id", async (req, res) => {
         const temp = await db.findOneAndUpdate({ email }, { password: await bcrypt.hash(password, saltRounds) });
         await forgotPass.deleteOne({ email });
 
-        return res.send(`<script>alert("Password updated"); window.location.href = "/signin" </script>`);
+        return res.status(200).send(`<script>alert("Password updated"); window.location.href = "/signin" </script>`);
     } catch (error) {
         console.log(err)
         return res.status(500).json({

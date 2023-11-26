@@ -18,7 +18,7 @@ const limit = 10 * 24 * 60 * 60;
 
 router.get("/signin", async (req, res) => {
     const filePath = path.join(__dirname, "../../templates/views", "sign_in");
-    res.render(filePath);
+    res.status(200).render(filePath);
 });
 
 router.post("/signin", async (req, res) => {
@@ -52,7 +52,7 @@ router.post("/signin", async (req, res) => {
             const token = createToken(result, role);
             res.cookie("accesstoken", token, { httpOnly: true, maxAge: limit }).status(200);
 
-            res.redirect("/");
+            res.status(200).redirect("/");
         } else {
             const result2 = await SigninCount.findOne({ $and: [{ ip: req.ip }, { email: username }] }).exec();
 
@@ -121,7 +121,7 @@ async function handleAccountLock(username, role, db, req, res) {
     // log(resetLink);
     await sendEmailLock(username, resetLink);
 
-    res.send(`<script>alert("Your account is locked, reset link is sent to your email."); window.history.back(); window.location.href="/signin";</script>`);
+    res.status(200).send(`<script>alert("Your account is locked, reset link is sent to your email."); window.history.back(); window.location.href="/signin";</script>`);
 }
 
 module.exports = router; // export router

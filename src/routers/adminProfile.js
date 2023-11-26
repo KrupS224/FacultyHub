@@ -21,8 +21,8 @@ router.get("/admin-profile/:id", requireAuth, async (req, res) => {
             if (profile && profile.email) {
                 res.render('adminprofile.hbs', { profile });
             } else {
-                res.status(400).json({
-                    message: "Not found"
+                res.status(500).json({
+                    message: "Profile not found"
                 })
             }
         } catch (error) {
@@ -32,7 +32,7 @@ router.get("/admin-profile/:id", requireAuth, async (req, res) => {
             });
         }
     } else {
-        return res.json({
+        return res.status(400).json({
             message: "You can not check other admin details"
         })
     }

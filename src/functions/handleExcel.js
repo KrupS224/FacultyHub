@@ -59,7 +59,7 @@ const handleExcel = async (req, res) => {
     const data = jwt.verify(token, process.env.SECRET_KEY);
     try {
         if (!req.files || !req.files['excelFile']) {
-            return res.status(400).send("No file uploaded or invalid file format.");
+            return res.send(`<script>alert("No file uploaded or invalid file format."); window.history.back();</script>`);
         }
 
         const fileBuffer = req.files['excelFile'][0].buffer;
@@ -145,16 +145,22 @@ const handleExcel = async (req, res) => {
                     })
                     .catch((saveError) => {
                         console.error("Error saving faculty data:", saveError);
-                        res.status(500).send("Error saving faculty data");
+                        res.status(500).json({
+                            message: "Error saving faculty data",
+                        });
                     });
             })
             .catch((err) => {
                 console.log(err);
-                res.status(500).send("Error reading Excel file");
+                res.status(400).json({
+                    message: "Error reading excel file",
+                });
             });
     } catch (e) {
         console.error(e);
-        res.status(500).send("Internal server error");
+        res.status(500).json({
+            message: "Internal server error",
+        });
     }
 };
 

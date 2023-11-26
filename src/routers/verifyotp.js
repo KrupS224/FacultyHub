@@ -8,7 +8,7 @@ const createToken = require("../functions/createToken");
 
 router.get("/signup/verifyotp", async (req, res) => {
     const filePath = path.join(__dirname, "../../templates/views", "verifyotp");
-    res.render(filePath);
+    res.status(200).render(filePath);
 });
 
 // create a new faculty into the database
@@ -25,7 +25,7 @@ async function verifyOTPFunction(data, req, res) {
 
         if (tempUser.verified == 1) {
             console.log("User already verified");
-            res.send(`<script>alert("User already verified"); window.location.href = "/signin";</script>`);
+            res.status(200).send(`<script>alert("User already verified"); window.location.href = "/signin";</script>`);
         }
 
         // console.log("reached");
@@ -52,7 +52,9 @@ async function verifyOTPFunction(data, req, res) {
 
     } catch (error) {
         console.log("Error verifying OTP: ", error);
-        res.status(500).send("Error verifying OTP");
+        res.status(500).json({
+            message: "Error verifying OTP"
+        });
     }
 }
 

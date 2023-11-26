@@ -6,7 +6,7 @@ const Admin = require('../models/admin');
 
 router.get("/university", setOption, (req, res) => {
     const filePath = path.join(__dirname, "../../templates/views", "university");
-    res.render(filePath);
+    res.status(200).render(filePath);
 });
 
 router.get("/search-university", setOption, async (req, res) => {
@@ -19,7 +19,7 @@ router.get("/search-university", setOption, async (req, res) => {
     }
     const data = await Admin.find(query, 'university university_img');
     res.locals.universityData = data
-    res.render("university", { searchdata: searchdata });
+    res.status(200).render("university", { searchdata: searchdata });
 });
 
 module.exports = router;

@@ -17,7 +17,7 @@ const { deleteAccount } = require('../functions/adminLockUpdate');
 
 router.get("/addfaculty", adminAuth, async (req, res) => {
     const filePath = path.join(__dirname, "../../templates/views/", "addfaculty");
-    res.render(filePath);
+    res.status(200).render(filePath);
 });
 
 router.get("/faculty/:id", async (req, res) => {
@@ -26,8 +26,8 @@ router.get("/faculty/:id", async (req, res) => {
         const faculty = await Faculty.findOne({ _id: profileId });
 
         if (!faculty) {
-            return res.status(404).json({
-                message: "Not found"
+            return res.status(400).json({
+                message: "Profile not found"
             });
         }
 
@@ -48,8 +48,8 @@ router.get("/faculty-profile/:id", requireAuth, async (req, res) => {
             if (profile && profile.email) {
                 res.render('faculty_profile.hbs', { profile });
             } else {
-                res.status(400).json({
-                    message: "Not found"
+                res.status(500).json({
+                    message: "Profile not found"
                 })
             }
         } catch (error) {
@@ -188,7 +188,7 @@ router.post('/faculty-profile-update/:id', upload.single('filename'), async (req
 
         const result = await Faculty.updateOne({ _id: profileId }, updateFields);
 
-        return res.send(`<script>alert("Data saved successfully"); window.location.href="/faculty-profile/${profileId}";</script>`);
+        return res.status(200).send(`<script>alert("Data saved successfully"); window.location.href="/faculty-profile/${profileId}";</script>`);
     } catch (error) {
         console.log(error)
         return res.status(500).json({
@@ -236,7 +236,7 @@ router.delete('/faculty-profile/remove-internship/:id', async (req, res) => {
         });
         // log(result);
 
-        return res.send(`<script>alert("Internship data removed successfully"); window.location.href="/faculty-profile/${profileId}";</script>`);
+        return res.status(200).send(`<script>alert("Internship data removed successfully"); window.location.href="/faculty-profile/${profileId}";</script>`);
     } catch (error) {
         console.log(err)
         return res.status(500).json({

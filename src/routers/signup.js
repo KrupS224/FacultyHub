@@ -7,15 +7,13 @@ const multer = require('multer');
 const { userDelete } = require("../functions/userFunctions");
 const { generateAndStoreOTP } = require("../functions/otpFunctions");
 const { sendEmail } = require("../functions/mails");
-const { log } = require('console');
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.get("/signup", async (req, res) => {
-    // req.session.signupStep = 1;
     const filePath = path.join(__dirname, "../../templates/views", "signup");
-    res.render(filePath);
+    res.status(200).render(filePath);
 });
 
 async function registerUser(data, req, res) {
@@ -36,7 +34,7 @@ async function registerUser(data, req, res) {
         return res.send(`<script>alert("Email is already registered"); window.history.back(); </script>`);
     }
     else if (userExists && userExists.verified === false) {
-        return res.send(`<script>alert("Verification is incomplete for this user. Redirecting to verification page."); window.location.href="/signup/verifyotp"; </script>`)
+        return res.status(200).send(`<script>alert("Verification is incomplete for this user. Redirecting to verification page."); window.location.href="/signup/verifyotp"; </script>`)
     }
 
     const OTP = generateAndStoreOTP(email, 6);
@@ -85,11 +83,11 @@ async function registerUser(data, req, res) {
         setTimeout(userDelete, 5 * 60 * 1000, email);
 
         // Redirect to the OTP verification page
-        res.redirect('/signup/verifyotp');
+        res.status(200).redirect('/signup/verifyotp');
 
     } catch (error) {
         console.log(`tempAdmin.save() error: ${error}`);
-        res.status(500).send({ error: "Server error" });
+        res.status(500).json({ message: "Server error" });
     }
 }
 

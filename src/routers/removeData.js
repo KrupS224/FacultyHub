@@ -3,6 +3,10 @@ const express = require('express'); // require express
 const router = express.Router(); // require router
 const Admin = require("../models/admin"); // require admin.js
 const Faculty = require("../models/faculty"); // require faculty.js
+const forgotPass = require("../models/forgotPass"); // require faculty.js
+const lockUser = require("../models/lockUser"); // require faculty.js
+const SigninCount = require("../models/signinCount"); // require faculty.js
+const verifyFaculty = require("../models/verifyFaculty"); // require faculty.js
 const jwt = require('jsonwebtoken');
 const { log } = require('console');
 const { sendAccountRemovalEmail } = require("../functions/mails");
@@ -22,8 +26,17 @@ router.delete("/admin-profile-remove/:id", async (req, res) => {
 
                 const faculties = await Faculty.find({ institute: university });
                 await Promise.all(faculties.map(async (faculty) => {
-                    const facultyEmail = faculty.email;
-                    await sendAccountRemovalEmail(facultyEmail);
+                    const email = faculty.email;
+
+                    // Deleting faculty
+                    await Faculty.deleteOne({ email: email });
+                    await forgotPass.deleteOne({ email: email });
+                    await lockUser.deleteOne({ email: email });
+                    await SigninCount.deleteOne({ email: email });
+                    await verifyFaculty.deleteOne({ email: email });
+
+                    // Send account removal email
+                    await sendAccountRemovalEmail(email);
                 }));
 
                 // deleting all faculties assosiated with admin
@@ -84,9 +97,13 @@ router.delete("/faculty-remove/:id", async (req, res) => {
         // console.log(data);
 
         const faculty = await Faculty.findById(profileId);
+        const email = faculty.email;
 
         // deleting faculty data
         await Faculty.deleteOne({ _id: profileId });
+        await lockUser.deleteOne({ email: email });
+        await SigninCount.deleteOne({ email: email });
+        await forgotPass.deleteOne({ email: email });
 
         // send mail
         sendAccountRemovalEmail(faculty.email);
