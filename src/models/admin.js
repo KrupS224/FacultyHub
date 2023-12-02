@@ -2,8 +2,6 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
-const jwt = require('jsonwebtoken');
-const { generateAndStoreOTP } = require('../functions/otpFunctions');
 
 const adminSchema = new mongoose.Schema({
     name: {

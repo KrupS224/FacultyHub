@@ -61,7 +61,7 @@
                 {{!-- first divison  --}}
                 <div id="admin_details">
                     <label for="name">Full Name</label>
-                    <input class="ip" type="text" name="adminName" maxlength="25" required>
+                    <input class="ip" type="text" name="adminName" maxlength="25" required autofocus>
                     <label for="email">Email</label>
                     <input class="ip" type="email" name="email" id="email" required>
                     <span id="emailError" style="color: red; font-size: smaller;"></span>
@@ -85,10 +85,10 @@
                 {{!-- Second div --}}
                 <div id="university_details" style="display: none; flex-direction: column;">
                     <label for="name">University Name</label>
-                    <input class="ip" type="text" name="university" required>
+                    <input class="ip" type="text" name="university" required autofocus>
                     <label for="email">Address</label>
-                    <textarea class="ip" name="address" style="height: 150px;" id="texta" maxlength="150"
-                        minlength="10"></textarea>
+                    <textarea class="ip" name="address" style="height: 150px;" id="texta" maxlength="150" minlength="10"
+                        required></textarea>
                     <label for="university">University Logo</label>
                     <input type="file" name="university_img" style="margin: 2px 0px 2px 20px;" accept="image/*"
                         required>

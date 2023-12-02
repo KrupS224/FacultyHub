@@ -26,13 +26,22 @@ router.post("/signin", async (req, res) => {
 
     const { role, username, password } = req.body;
 
+    if (!role || !username || !password) {
+        return response.status(401).send(`<script>alert("Missing fields required"); window.history.back();</script>`)
+    }
+
     try {
         const db = role === 'admin' ? Admin : Faculty;
-        const result = await db.findOne({ $and: [{ email: username }, { verified: 1 }] }).exec();
+        const result = await db.findOne({ email: username }).exec();
 
         if (!result) {
             log("Result not found");
-            return res.status(401).send(`<script>alert("Invalid Details"); window.history.back();</script>`);
+            return res.status(401).send(`<script>alert("Invalid email"); window.history.back();</script>`);
+        }
+
+        if (!result.verified) {
+            log("User not verified");
+            return res.status(401).send(`<script>alert("User not verified"); window.history.back();</script>`);
         }
 
         if (result && result.lock) {
@@ -52,7 +61,7 @@ router.post("/signin", async (req, res) => {
             const token = createToken(result, role);
             res.cookie("accesstoken", token, { httpOnly: true, maxAge: limit }).status(200);
 
-            res.status(200).redirect("/");
+            res.redirect(302, "/");
         } else {
             const result2 = await SigninCount.findOne({ $and: [{ ip: req.ip }, { email: username }] }).exec();
 
@@ -117,7 +126,7 @@ async function handleAccountLock(username, role, db, req, res) {
     }
 
     const port = process.env.PORT || 8000;
-    const resetLink = `https://facultyhub.onrender.com/unlock-account?email=${username}?&role=${role}?&hash=${otp}`;
+    const resetLink = `https://facultyhub.onrender.com/unlock-account?email=${username}&role=${role}&hash=${otp}`;
     // log(resetLink);
     await sendEmailLock(username, resetLink);
 

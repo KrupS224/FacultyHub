@@ -10,11 +10,7 @@ const { checkUser } = require('./src/functions/userFunctions');
 const app = express();
 const port = process.env.PORT || 8000;
 
-mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    // useCreateIndex: true
-}).then(() => {
+mongoose.connect(process.env.DATABASE_URL).then(() => {
     console.log("Connection successful");
     app.listen(port, () => {
         console.log(`Server is running at port ${port}`);

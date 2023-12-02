@@ -34,7 +34,7 @@ async function registerUser(data, req, res) {
         return res.send(`<script>alert("Email is already registered"); window.history.back(); </script>`);
     }
     else if (userExists && userExists.verified === false) {
-        return res.status(200).send(`<script>alert("Verification is incomplete for this user. Redirecting to verification page."); window.location.href="/signup/verifyotp"; </script>`)
+        return res.status(302).send(`<script>alert("Verification is incomplete for this user. Redirecting to verification page."); window.location.href="/signup/verifyotp"; </script>`)
     }
 
     const OTP = generateAndStoreOTP(email, 6);
@@ -83,7 +83,7 @@ async function registerUser(data, req, res) {
         setTimeout(userDelete, 5 * 60 * 1000, email);
 
         // Redirect to the OTP verification page
-        res.status(200).redirect('/signup/verifyotp');
+        res.redirect(302, '/signup/verifyotp');
 
     } catch (error) {
         console.log(`tempAdmin.save() error: ${error}`);

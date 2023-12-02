@@ -57,6 +57,12 @@ router.post("/forgot-password", async (req, res) => {
 
         const user_admin = await Admin.findOne({ email });
         const user_faculty = await Faculty.findOne({ email });
+        const user = user_admin ? user_admin : user_faculty ? user_faculty : null;
+
+        if (user && !user.verified) {
+            return res.send(`<script>alert("Email is not verified"); window.location.href='/signin';</script>`);
+        }
+
         const db = user_admin ? Admin : user_faculty ? Faculty : null;
         const role = user_admin ? 'admin' : user_faculty ? 'faculty' : null;
 
