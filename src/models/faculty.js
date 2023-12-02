@@ -22,7 +22,13 @@ const facultySchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        default: "Not Available"
+        required: true,
+        unique: [true, "Email already exists"],
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error("Invalid Email");
+            }
+        }
     },
     password: {
         type: String,

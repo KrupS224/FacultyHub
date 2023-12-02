@@ -94,6 +94,22 @@ describe('POST /signup/verifyotp', () => {
         expect(response.text).toContain('<script>alert("Verification is incomplete for this user. Redirecting to verification page."); window.location.href="/signup/verifyotp"; </script>');
     });
 
+    test('Should return an alert message for different password and Confirm passwords', async () => {
+        const response = await request(baseUrl)
+            .post('/signup/verifyotp')
+            .send({
+                adminName: 'John Doe',
+                email: 'john.doe@example.com',
+                password: 'Password123',
+                cPassword: 'Password456',
+                mobile_no: '1234567890',
+                university: 'Example University',
+                address: '123 Main St',
+            });
+
+        expect(response.text).toContain('<script>alert("Password and Confirm Password do not match"); window.history.back();</script>');
+    });
+
 });
 
 

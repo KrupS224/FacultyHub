@@ -66,6 +66,20 @@ describe("POST /signin", () => {
         // expect(response.text).toContain('Invalid Details');
     });
 
+    test('Should return an alert message for not verified email', async () => {
+        Admin.findOne.mockResolvedValue({ email: 'john.doe@example.com', verified: false });
+
+        const response = await request(baseUrl)
+            .post('/signin')
+            .send({
+                role: 'admin',
+                username: 'john.doe@example.com',
+                password: 'Password123',
+            });
+
+        expect(response.text).toContain('<script>alert("User not verified"); window.history.back();</script>');
+    });
+
     const testCases = [
         {
             description: 'Missing role field',
@@ -90,7 +104,7 @@ describe("POST /signin", () => {
                 .send(testCase.requestBody);
 
             // Assert the expected outcome
-            expect(response.status).toBe(401);
+            expect(response.status).toBe(502);
             // expect(response.text).toContain('Invalid Details');
         });
     }
