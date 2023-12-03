@@ -86,5 +86,9 @@ const searchFacultyRouter = require("./src/routers/searchFaculty");
 app.use(searchFacultyRouter);
 
 const removeDataRouter = require("./src/routers/removeData");
-// const Faculty = require('./src/models/faculty');
 app.use(removeDataRouter);
+
+app.get('/aboutus', (req, res) => {
+    const filePath = path.join(__dirname, "./templates/views/aboutus");
+    res.render(filePath);
+});

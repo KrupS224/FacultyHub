@@ -37,6 +37,11 @@ async function registerUser(data, req, res) {
         return res.status(302).send(`<script>alert("Verification is incomplete for this user. Redirecting to verification page."); window.location.href="/signup/verifyotp"; </script>`)
     }
 
+    const uniExists = await Admin.findOne({ university });
+    if (uniExists) {
+        return res.send(`<script>alert("University is already registered"); window.history.back(); </script>`);
+    }
+
     const OTP = generateAndStoreOTP(email, 6);
     console.log(OTP);
 
