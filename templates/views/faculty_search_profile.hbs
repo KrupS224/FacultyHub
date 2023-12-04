@@ -50,7 +50,7 @@
                 {{#if faculty.coursesTaught}}
                     <button class="tab_btn">Teachings</button>
                 {{/if}}
-                {{#if faculty.specialalization}}
+                {{#if faculty.specialization}}
                     <button class="tab_btn">Specializations</button>
                 {{/if}}
                 {{#if faculty.publications}}
@@ -63,36 +63,46 @@
             </div>
             <div class="content_box">
                 <div class="content">
-                    <p><b>Education:</b>{{faculty.education}}</p>
-                </div>
-                <div class="content">
-                    <b>Teachings:</b>
+                    <b>Education:</b>
                     <ul>
-                        {{#each faculty.coursesTaught}}
-                            <li>{{this}}</li>
-                        {{/each}}
+                        <li>{{faculty.education}}</li>
                     </ul>
                 </div>
-                <div class="content">
-                    <b>Field of specialalization:</b>
-                    {{#each faculty.specialalization}}
-                        <li>{{this}}</li>
-                    {{/each}}
-                </div>
-                <div class="content">
-                    <b>Publications:</b>
-                    <ul>
-                        {{#each faculty.publications}}
-                            <li>{{this}}</li>
+                {{#if faculty.coursesTaught}}
+                    <div class="content">
+                        <b>Teachings:</b>
+                        <ul>
+                            <li>{{faculty.coursesTaught}}</li>
+                        </ul>
+                    </div>
+                {{/if}}
+
+                {{#if faculty.specialization}}
+                    <div class="content">
+                        <b>Field of specialalization:</b>
+                        <ul>
+                            <li>{{faculty.specialization}}</li>
+                        </ul>
+                    </div>
+                {{/if}}
+
+                {{#if faculty.publications}}
+                    <div class="content">
+                        <b>Publications:</b>
+                        <ul>
+                            <li>{{faculty.publications}}</li>
+                        </ul>
+                    </div>
+                {{/if}}
+
+                {{#if faculty.internship}}
+                    <div class="content">
+                        <h2>Internships</h2>
+                        {{#each faculty.internship}}
+                            <p>{{this}}</p> {{!-- frontend part --}}
                         {{/each}}
-                    </ul>
-                </div>
-                <div class="content">
-                    <h2>Internships</h2>
-                    {{#each faculty.internship}}
-                        <p>{{this}}</p> {{!-- frontend part --}}
-                    {{/each}}
-                </div>
+                    </div>
+                {{/if}}
             </div>
         </div>
         </div>

@@ -27,7 +27,7 @@ router.post("/signin", async (req, res) => {
     const { role, username, password } = req.body;
 
     if (!role || !username || !password) {
-        return response.status(502).send(`<script>alert("Missing fields required"); window.history.back();</script>`)
+        return res.status(502).send(`<script>alert("Missing fields required"); window.history.back();</script>`)
     }
 
     try {

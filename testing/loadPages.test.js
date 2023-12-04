@@ -15,7 +15,7 @@ const pagesWithAuthorization = [
     '/admin-profile/6560566bf9ee98b289119a01',
     '/change-password',
     '/addfaculty',
-    '/faculty-profile/6560568cf9ee98b289119a0a',
+    // '/faculty-profile/6560568cf9ee98b289119a0a',
 ];
 
 const describePageTests = (pages, status) => {

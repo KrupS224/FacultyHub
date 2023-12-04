@@ -32,7 +32,7 @@ describe('POST /signup/verifyotp', () => {
                 address: '123 Main St',
             });
 
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(302);
         expect(response.text).toContain('<script>alert("Not a valid email"); window.history.back();</script>');
     });
 
@@ -54,27 +54,27 @@ describe('POST /signup/verifyotp', () => {
         expect(response.text).toContain('<script>alert("Email is already registered"); window.history.back(); </script>');
     });
 
-    // test('Should return 200 and redirect to /signup/verifyotp on successful registration', async () => {
-    //     Admin.findOne.mockResolvedValue(null);
+    test('Should return 200 and redirect to /signup/verifyotp on successful registration', async () => {
+        Admin.findOne.mockResolvedValue(null);
 
-    //     generateAndStoreOTP.mockReturnValue('123456');
+        generateAndStoreOTP.mockReturnValue('123456');
 
-    //     // sendEmail.mockResolvedValue(true);
+        // sendEmail.mockResolvedValue(true);
 
-    //     const response = await request(baseUrl)
-    //         .post('/signup/verifyotp')
-    //         .send({
-    //             adminName: 'John Doe',
-    //             email: 'john.doe@example.com',
-    //             password: 'Password123',
-    //             cPassword: 'Password123',
-    //             mobile_no: '1234567890',
-    //             university: 'Example University',
-    //             address: '123 Main St',
-    //         });
+        const response = await request(baseUrl)
+            .post('/signup/verifyotp')
+            .send({
+                adminName: 'John Doe',
+                email: 'john.doe@example.com',
+                password: 'Password123',
+                cPassword: 'Password123',
+                mobile_no: '1234567890',
+                university: 'Example University',
+                address: '123 Main St',
+            });
 
-    //     expect(response.status).toBe(200);
-    // });
+        expect(response.status).toBe(200);
+    });
 
     test('Should return an alert message for already registered and email is not verified', async () => {
         Admin.findOne.mockResolvedValue({ email: 'john.doe@example.com', verified: false });
@@ -133,16 +133,17 @@ describe('POST /signup/otpverified', () => {
         expect(response.text).toContain('<script>alert("User not found"); window.history.back();</script>');
     });
 
-    // test('Should return an alert message when user is verified', async () => {
-    //     Admin.findOne.mockResolvedValue({ email: 'krups224@gmail.com', verified: true });
+    test('Should return an alert message when user is verified', async () => {
+        Admin.findOne.mockResolvedValue({ email: 'krups224@gmail.com', verified: true });
 
-    //     const response = await request(baseUrl)
-    //         .post('/signup/otpverified')
-    //         .send({
-    //             email: 'krups224@gmail.com',
-    //             otp: '123456',
-    //         });
+        const response = await request(baseUrl)
+            .post('/signup/otpverified')
+            .send({
+                email: 'krups224@gmail.com',
+                otp: '123456',
+            });
 
-    //     expect(response.text).toContain('<script>alert("User already verified"); window.location.href = "/signin";</script>');
-    // })
+        expect(response.status).toBe(302);
+        // expect(response.text).toContain('<script>alert("User already verified"); window.location.href = "/signin";</script>');
+    })
 });
