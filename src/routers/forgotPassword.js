@@ -67,9 +67,7 @@ router.post("/forgot-password", async (req, res) => {
         const role = user_admin ? 'admin' : user_faculty ? 'faculty' : null;
 
         if (!db) {
-            return res.status(400).json({
-                message: "Invalid email address"
-            });
+            return res.send(`<script>alert("Email is not registered."); window.history.back();</script>`);
         }
 
         const otp = generateOTP(15);
@@ -102,9 +100,7 @@ router.post("/reset-pass/:id", async (req, res) => {
     const user = await forgotPass.findOne({ email });
 
     if (!user) {
-        return res.status(400).json({
-            message: "Invalid reset link"
-        });
+        return res.send(`<script>alert("Invalid reset link."); window.location.href='/forgotlink';</script>`);
     }
 
     const password = req.body.pass;
@@ -120,9 +116,7 @@ router.post("/reset-pass/:id", async (req, res) => {
         const db = user_admin ? Admin : user_faculty ? Faculty : null;
 
         if (!db) {
-            return res.status(400).json({
-                message: "Invalid email address"
-            });
+            return res.send(`<script>alert("Email is not registered."); window.history.back();</script>`);
         }
 
         const temp = await db.findOneAndUpdate({ email }, { password: await bcrypt.hash(password, saltRounds) });

@@ -8,6 +8,7 @@
         var optionsDiv = document.getElementById("options-container");
         if (optionsDiv.style.display === "none") {
             optionsDiv.style.display = "flex";
+
         } else {
             optionsDiv.style.display = "none";
         }
@@ -38,6 +39,7 @@
                     alert(error.message);
                     // Handle the error or display a message to the user
                 });
+
         }
     }
 
@@ -102,12 +104,12 @@
                 </li>
 
                 {{#if user}}
-                    <li style="margin-right: 35px;">
+                    <li style="margin-right: 35px;" class="icon_f">
 
-                        <button onclick="toggleOptions()" id="icon_s">
-                            <i class='fas fa-user-alt' style='font-size:36px'></i></button>
+                        <button onclick="toggleOptions()" id="icon_s"><i class='fas fa-user-alt'
+                                style='font-size:36px'></i></button>
                         <div id="options-container">
-                            <form action="/logout" method="post">
+                            <form action="/logout" method="post" class="lg">
                                 <button type="submit" class="options_bt">Logout</button>
                             </form>
                             {{!-- <a href="#" class="options_bt">Log Out</a> --}}
@@ -125,8 +127,7 @@
                             {{else}}
 
                                 <a href="/faculty-profile/{{user._id}}" class="options_bt"><button
-                                        class="options_bt">Edit
-                                        Profile</button>
+                                        class="options_bt">Profile</button>
                                 </a>
                                 <button id="delete-faculty" class="options_bt" onclick="deletefaculty()">Delete
                                     Account</button>

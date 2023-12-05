@@ -1,4 +1,3 @@
-
 html, body{
     font-weight: 400 !important;
     font-family: sans-serif !important;
@@ -51,7 +50,8 @@ footer a{
 }
 
 .btn-sz-primary:hover{
-    background-color: #000000;
+    background-color: green;
+    color: b;
 }
 
 .main-text{

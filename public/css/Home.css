@@ -1,6 +1,4 @@
 
-/*Main Content*/
-
 #form12{
     background-color: black;
 }
@@ -11,7 +9,6 @@
     width: 200px; 
     height: 200px;
 }
-/*Footer Content*/
 
 footer{
     display: flex;
@@ -120,4 +117,13 @@ footer{
     height: 30vh;
   }
 }
-
+@media only screen and (max-width: 600px) {
+  .cousal{
+    height: 20vh;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .cousal{
+    height: 12vh;
+  }
+}

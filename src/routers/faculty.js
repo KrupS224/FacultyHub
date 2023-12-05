@@ -101,6 +101,8 @@ router.post("/addfaculty", upload.fields([{ name: 'faculty_img', maxCount: 1 }, 
     const token = req.cookies.accesstoken;
     const data = jwt.verify(token, process.env.SECRET_KEY);
 
+    const coursesTaughtAsString = Array.isArray(coursesTaught) ? coursesTaught.join(', ') : coursesTaught;
+
     const pass = generateRandomPassword();
     const updateFields = {
         name: facultyName,
@@ -109,7 +111,7 @@ router.post("/addfaculty", upload.fields([{ name: 'faculty_img', maxCount: 1 }, 
         contactNo,
         education,
         fieldOfSpecialization,
-        coursesTaught,
+        coursesTaught: coursesTaughtAsString,
         website,
         publications,
         password: pass,
@@ -229,16 +231,17 @@ router.delete('/faculty-profile/remove-internship/:id', async (req, res) => {
     const intershipId = req.params.id;
     const token = req.cookies.accesstoken;
     const data = jwt.verify(token, process.env.SECRET_KEY);
+    console.log(data);
 
     try {
         const result = await Faculty.updateOne({ _id: data._id }, {
             $pull: { internship: { _id: intershipId } }
         });
-        // log(result);
+        console.log(result);
 
-        return res.status(200).send(`<script>alert("Internship data removed successfully"); window.location.href="/faculty-profile/${profileId}";</script>`);
+        return res.status(200).send(`<script>alert("Internship data removed successfully"); window.location.href="/faculty-profile/${data._id}";</script>`);
     } catch (error) {
-        console.log(err)
+        console.log(error)
         return res.status(500).json({
             message: "Internal server error"
         });

@@ -43,29 +43,16 @@
                     method: 'delete',
                 })
                     .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Failed to remove internship data.');
-                        }
+                        alert('Profile deleted successfully!');
+
+                        // You can redirect or perform other actions as needed after successful deletion
+                        window.location.href = '/faculty-profile/{{profile._id}}';
                     })
                     .catch(error => {
                         alert(error.message);
                     });
             }
         }
-
-        const tabs = document.querySelectorAll('.tab_btn');
-        const all_content = document.querySelectorAll('.content');
-
-        tabs.forEach((tab, index) => {
-            tab.addEventListener('click', (e) => {
-                tabs.forEach(tab => { tab.classList.remove('active') });
-                tab.classList.add('active');
-
-                all_content.forEach(content => { content.classList.remove('active') })
-                all_content[index].classList.add('active');
-
-            })
-        });
     </script>
 </head>
 
@@ -157,11 +144,11 @@
                             <h2 class="text-center">Add Internships</h2>
                             <div>
                                 <label>Title: </label>
-                                <input type="text" class="form-control" name="title">
+                                <input type="text" class="form-control" name="title" required>
                             </div>
                             <div>
                                 <label>Field: </label>
-                                <input type="text" class="form-control" name="type">
+                                <input type="text" class="form-control" name="type" required>
                             </div>
                             <div>
                                 <label>Position: </label>
@@ -193,38 +180,47 @@
                         <div class="content1">
                             <div class="In_card">
                                 <div class="imgBx">
-                                    <img src="OIP.jpeg" alt="">
+                                    <img src="../../images/OIP.jpeg" alt="">
                                 </div>
                                 <div class="details">
 
                                     <h2>{{this.name}} <a href="mailto:{{../profile.email}}">
-                                            <img src="avatar.png" alt=""></a><br>
+                                            <img src="../../images/avatar.png" alt=""></a><br>
                                         <span>{{../profile.name}} </span>
                                     </h2>
-                                    <h2>Internships Details</h2>
-                                    <p><strong>Title:</strong>{{this.name}}</p>
+                                    <h2>Internships Details</h2><br>
+                                    <button onclick="removeIntership('/faculty-profile/remove-internship/{{this._id}}')"
+                                        class="btn1"><i class="fa fa-trash"></i></button>
                                     <p><strong>Field:</strong>{{this.field}}</p>
                                     <p><strong>Position:</strong>{{this.position}}</p>
                                     <p><strong>Duration:</strong> {{this.duration}}</p>
                                     <p><strong>Description:</strong>{{this.description}}</p>
-                                    <div class="button">
-                                        <!-- <input type="submit" value="Apply" class="btn"> -->
-                                        <button
-                                            onclick="removeIntership('/faculty-profile/remove-internship/{{this._id}}')"
-                                            class="btn1"><i class="fa fa-trash"></i></button>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="popup" id="popup{{@index}}">
-                                <div class="overlay"></div>
-
-                            </div>
-
+                        </div>
                     {{/each}}
+
                 </div>
             </div>
         </div>
         </div>
+
+        <script>
+            const tabs = document.querySelectorAll('.tab_btn');
+            const all_content = document.querySelectorAll('.content');
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', (e) => {
+                    tabs.forEach(tab => { tab.classList.remove('active') });
+                    tab.classList.add('active');
+
+                    all_content.forEach(content => { content.classList.remove('active') })
+                    all_content[index].classList.add('active');
+
+                })
+            })
+        </script>
+
 
     </main>
     {{>footer}}

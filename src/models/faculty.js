@@ -51,8 +51,8 @@ const facultySchema = new mongoose.Schema({
         required: false
     },
     publications: {
-        type: [String],
-        default: []
+        type: String,
+        required: false,
     },
     verified: {
         type: Boolean,
@@ -74,23 +74,23 @@ const facultySchema = new mongoose.Schema({
         {
             name: {
                 type: String,
-                default: ""
+                required: true
             },
             description: {
                 type: String,
-                default: ""
+                required: true
             },
             field: {
                 type: String,
-                default: ""
+                required: false
             },
             duration: {
                 type: String,
-                default: ""
+                required: false
             },
             position: {
                 type: String,
-                default: ""
+                required: false
             }
         }
     ]

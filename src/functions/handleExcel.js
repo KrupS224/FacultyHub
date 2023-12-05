@@ -75,6 +75,13 @@ const handleExcel = async (req, res) => {
 
                 worksheet.eachRow({ includeEmpty: true }, async (row, rowNumber) => {
                     if (rowNumber > 1) {
+                        const email = row.getCell(4).value;
+                        const existingFaculty = await Faculty.findOne({ email });
+
+                        if (existingFaculty) {
+                            console.log(`Faculty with email ${email} already exists. Skipping this row.`);
+                            return; // Skip to the next iteration of the loop
+                        }
 
                         const password = generateRandomPassword();
                         const facultyData = {
@@ -92,6 +99,7 @@ const handleExcel = async (req, res) => {
                             department: row.getCell(11).value,
                             institute: data.university,
                             password: password,
+                            verified: true,
                         };
 
                         const imageUrl = row.getCell(10).value;
@@ -111,24 +119,24 @@ const handleExcel = async (req, res) => {
                         }
 
 
-                        const mail = row.getCell(5).value;
-                        const university = data.university;
-                        const name = row.getCell(1).value;
-                        const otp = generateOTP(30);
+                        // const mail = row.getCell(5).value;
+                        // const university = data.university;
+                        // const name = row.getCell(1).value;
+                        // const otp = generateOTP(30);
 
-                        // add data into verifyFaculty schema
-                        const verifyData = new verifyFaculty({
-                            email: mail,
-                            link: otp
-                        });
-                        await verifyData.save();
+                        // // add data into verifyFaculty schema
+                        // const verifyData = new verifyFaculty({
+                        //     email: mail,
+                        //     link: otp
+                        // });
+                        // await verifyData.save();
 
-                        // send email before registring
-                        const port = process.env.PORT || 8000;
-                        const verifyLink = `https://facultyhub.onrender.com/verify-account?email=${mail}?&hash=${otp}`
+                        // // send email before registring
+                        // const port = process.env.PORT || 8000;
+                        // const verifyLink = `https://facultyhub.onrender.com/verify-account?email=${mail}?&hash=${otp}`
 
-                        await sendEmailLoginCredentials(mail, university, password, name, verifyLink);
-                        setTimeout(deleteAccount, 1000 * 60 * 60 * 24 * 7, mail);
+                        // await sendEmailLoginCredentials(mail, university, password, name, verifyLink);
+                        // setTimeout(deleteAccount, 1000 * 60 * 60 * 24 * 7, mail);
 
 
                         saveFacultyPromises.push(Faculty.create(facultyData));

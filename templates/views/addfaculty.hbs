@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <!--  {{>header}} -->
+    {{>header}}
 
     <main>
         <div class="wrapper">
@@ -48,7 +48,7 @@
                         </div>
                         <div class="inputfield">
                             <label for="Education">Education</label>
-                            <input required class="ip" type="text" name="education" maxlength="200">
+                            <input class="ip" type="text" name="education" maxlength="200">
                         </div>
                         <div class="inputfield">
                             <label for="Address">Address</label>
@@ -112,8 +112,7 @@
         </div>
     </main>
 
-    <!--  {{>footer}} -->
-
+    {{>footer}}
     <script>
         function showExcelData() {
             document.getElementById("indiData").style.display = "none";
@@ -125,7 +124,7 @@
             var elements = form.elements;
             console.log(elements);
             for (var i = 0; i < elements.length; i++) {
-                if (i != 10) {
+                if (i != 11) {
                     elements[i].required = false;
                 } else {
                     elements[i].required = true;
@@ -143,7 +142,7 @@
             var elements = form.elements;
             console.log(elements);
             for (var i = 0; i < elements.length; i++) {
-                if (i != 10 && (i == 0 || i == 1 || i == 3)) {
+                if (i != 11 && (i == 0 || i == 1)) {
                     elements[i].required = true;
                 } else {
                     elements[i].required = false;
