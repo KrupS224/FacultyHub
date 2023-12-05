@@ -9,23 +9,38 @@
 </head>
 
 <body>
-    {{>header}}
+    <!--  {{>header}} -->
 
     <main>
         <div class="wrapper">
             <div class="title">
                 Add Faculty
             </div>
+            <div class="Radio">
+                <div class="radiofield">
+                    <input type="radio" name="facultyType" value="singular" id="backBtn" onclick="showIndiData()"
+                        style="display: none;">
+                    <label for="singularRadio" class="btn">Add Singular Faculty</label>
+                </div>
+
+                <div class="radiofield">
+                    <input type="radio" name="facultyType" value="excel" id="excelBtn" onclick="showExcelData()"
+                        style="display: block">
+                    <label for="excelRadio" class="btn">Add Faculty via Excel Sheets</label>
+                </div>
+
+            </div>
             <form id="myForm" method="post" action="/addfaculty" enctype="multipart/form-data">
                 <div class="form">
                     <div id="indiData">
                         <div class="inputfield">
                             <label for="name">Faculty Name*</label>
-                            <input required class="ip" type="text" name="facultyName" maxlength="40">
+                            <input required class="ip" type="text" name="facultyName" maxlength="50">
                         </div>
                         <div class="inputfield">
                             <label for="email">Email-Address*</label>
-                            <input required class="ip" type="email" name="email" maxlength="40">
+                            <input required class="ip" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                name="email">
                         </div>
                         <div class="inputfield">
                             <label for="Number">Contact No</label>
@@ -33,23 +48,27 @@
                         </div>
                         <div class="inputfield">
                             <label for="Education">Education</label>
-                            <input required class="ip" type="text" name="education">
+                            <input required class="ip" type="text" name="education" maxlength="200">
                         </div>
                         <div class="inputfield">
                             <label for="Address">Address</label>
-                            <input class="Address" type="text" name="address">
+                            <input class="ip" type="text" name="address" max="500">
                         </div>
                         <div class="inputfield">
                             <label for="Specialization">Field of specialization</label>
-                            <input class="ip" type="text" name="fieldOfSpecialization">
+                            <input class="ip" type="text" name="fieldOfSpecialization" maxlength="100">
                         </div>
                         <div class="inputfield">
                             <label for="Courses">Courses Taught*</label>
+                            <input class="ip" type="text" name="coursesTaught" maxlength="50">
+                        </div>
+                        <div class="inputfield">
+                            <label for="Courses">Department</label>
                             <input class="ip" type="text" name="coursesTaught">
                         </div>
                         <div class="inputfield">
                             <label for="Website">Website</label>
-                            <input class="ip" type="url" name="website">
+                            <input class="ip" type="url" name="website" pattern="https://.*" maxlength="40">
                         </div>
                         <div class="inputfield">
                             <label for="Publications">Publications</label>
@@ -64,15 +83,23 @@
                         <label for="Excle">Excel</label>
                         <input class="Excel" type="file" name="excelFile"
                             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                        <h1>Instructions</h1>
+                        <P>keep the column format accordingly:</P>
+                        <p>Name: required</p>
+                        <p>ContactNo: Not required</p>
+                        <p>Address: not required(office Address)</p>
+                        <p>Email: required</p>
+                        <p>Education: not required</p>
+                        <p>CoursesTaught: not required</p>
+                        <p>Specialization: not required</p>
+                        <p>Website: not required</p>
+                        <p>Publications: not required</p>
+                        <p>Image: image link</p>
+                        <p>Department: not required</p>
                     </div>
                     <div class="button">
-                        <div class="inputfield">
-                            <input type="button" value="Excel" class="btn" id="excelBtn" onclick="showExcelData()">
-                        </div>
-                        <div class="inputfield">
-                            <input type="button" value="Back" class="btn" id="backBtn" onclick="showIndiData()"
-                                style="display: none">
-                        </div>
+
+
                         <div class="inputfield">
                             <input type="reset" value="Reset" class="btn">
                         </div>
@@ -85,14 +112,15 @@
         </div>
     </main>
 
-    {{>footer}}
+    <!--  {{>footer}} -->
 
     <script>
         function showExcelData() {
             document.getElementById("indiData").style.display = "none";
+            document.getElementById("backBtn").style.display = "block";
             document.getElementById("excelBtn").style.display = "none";
             document.getElementById("excelData").style.display = "block";
-            document.getElementById("backBtn").style.display = "block";
+
             var form = document.getElementById("myForm");
             var elements = form.elements;
             console.log(elements);
@@ -107,9 +135,10 @@
 
         function showIndiData() {
             document.getElementById("indiData").style.display = "block";
+            document.getElementById("backBtn").style.display = "none";
             document.getElementById("excelBtn").style.display = "block";
             document.getElementById("excelData").style.display = "none";
-            document.getElementById("backBtn").style.display = "none";
+
             var form = document.getElementById("myForm");
             var elements = form.elements;
             console.log(elements);

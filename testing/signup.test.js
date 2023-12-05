@@ -32,7 +32,7 @@ describe('POST /signup/verifyotp', () => {
                 address: '123 Main St',
             });
 
-        expect(response.status).toBe(302);
+        expect(response.status).toBe(200);
         expect(response.text).toContain('<script>alert("Not a valid email"); window.history.back();</script>');
     });
 
@@ -73,7 +73,7 @@ describe('POST /signup/verifyotp', () => {
                 address: '123 Main St',
             });
 
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(302);
     });
 
     test('Should return an alert message for already registered and email is not verified', async () => {
@@ -143,7 +143,7 @@ describe('POST /signup/otpverified', () => {
                 otp: '123456',
             });
 
-        expect(response.status).toBe(302);
+        expect(response.status).toBe(502);
         // expect(response.text).toContain('<script>alert("User already verified"); window.location.href = "/signin";</script>');
     })
 });

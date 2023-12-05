@@ -60,15 +60,17 @@ body{
   padding: 0 10px;
 }
 .wrapper{
-  max-width: 400px;
+  max-width: 45vw;
   width: 100%;
   background: #ffffff;
-  margin: 20px auto;
+  margin: 2vw 28vw;
   /* box-shadow: 1px 1px 2px rgba(0,0,0,0.125); */
   padding: 30px;
 }
 
 .wrapper .title{
+  display: flex;
+  justify-content: center;
   font-size: 4vh;
   font-weight: 700;
   margin-bottom: 5vh;
@@ -77,16 +79,16 @@ body{
   text-align: center;
 }
 
-.wrapper .form{
+.wrapper .form .indiData{ 
   width: 100%;
 }
 
 .wrapper .form .inputfield{
   margin-bottom: 15px;
-  display: flex;
+  display: inline-flex;
   /* align-items: center; */
-  flex-direction: column;
-  align-items: flex-start;
+  /* flex-direction: column; */
+  align-items: flex-start; 
 }
 
 .wrapper .form .inputfield label{
@@ -107,14 +109,13 @@ body{
   padding-top: 1vh;
 }
 
-.wrapper .form .inputfield .input,
+.wrapper .form .inputfield .ip,
 .wrapper .form .inputfield .textarea{
-  width: 100%;
+  width: 25vw;
   outline: none;
   border: 1px solid #bab4b4;
   font-size: 15px;
   padding: 8px 10px;
-  border-radius: 3px;
   transition: all 0.3s ease;
 }
 
@@ -152,7 +153,6 @@ body{
 } 
 
 .wrapper .form .button .inputfield{
-    flex: 1;
     display: inline-block;
     margin-right: 1.5vw;
 }
@@ -177,6 +177,26 @@ body{
     flex-direction: column;
     align-items: flex-start;
   }
+   .wrapper{
+    margin: 2vw 12vw;
+  } 
+   .wrapper .title{
+    margin: 5vw 30vw;
+    display: flex;
+    text-align: center;
+  } 
+  .wrapper .form .inputfield .ip{
+    height: 8vw;
+    width: 60vw;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wrapper .form .button{
+    gap: 27vw;
+    display: flex;
+    margin-left: -3vw;
+    padding-top: 1vw;
+  }
   .wrapper .form .inputfield label{
     margin-bottom: 5px;
   }
@@ -187,10 +207,68 @@ body{
       margin-right:0; 
     }
     
-    .wrapper .form .button .inputfield {
-      margin-right: 4vw;
-      margin-left: 4vw; 
-    }
+   
   }
     
+}
+.wrapper .form .inputfield h1{
+  font-size: 1.3vw;
+  padding: 0.5vw;
+}
+.wrapper .form .inputfield p{
+  font-size: 1vw;
+  padding: 0.2vw;
+}
+
+.Radio .radiofield {
+  display: inline-flex; 
+  margin-right: 1vw;
+  margin-bottom: 3vw;
+  margin-left: 3vw;
+  gap: 0.5vw;
+  cursor: pointer;
+  font-size: 1.2vw;
+  
+
+}
+.Radio .radiofield input[type="radio"]{
+  width: 1.2vw;
+  height: 1.2vw;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #000000; 
+  border-radius: 50%; 
+  outline: none; 
+  cursor: pointer; 
+  
+}
+@media only screen and (max-width: 768px) {
+  .wrapper .form .inputfield h1 {
+    font-size: 18px; 
+    padding: 10px; 
+  }
+
+  .wrapper .form .inputfield p {
+    font-size: 14px;
+    padding: 5px; 
+  }
+
+  .Radio .radiofield {
+    display: inline-flex;
+    font-size: 3.8vw;
+    gap: 3vw;
+    margin-left: 0; 
+    margin-right: 0; 
+    margin-bottom: 10px; 
+  }
+
+  .Radio .radiofield input[type="radio"] {
+    width: 8vw; 
+    height: 5vw; 
+  }
+  .Radio{
+    width: 70vw;
+    display: inline-flex;
+  }
 }

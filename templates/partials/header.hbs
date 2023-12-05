@@ -38,7 +38,6 @@
                     alert(error.message);
                     // Handle the error or display a message to the user
                 });
-
         }
     }
 
@@ -105,8 +104,8 @@
                 {{#if user}}
                     <li style="margin-right: 35px;">
 
-                        <button onclick="toggleOptions()" id="icon_s"><i class='far fa-grin-alt'
-                                style='font-size:36px'></i></button>
+                        <button onclick="toggleOptions()" id="icon_s">
+                            <i class='fas fa-user-alt' style='font-size:36px'></i></button>
                         <div id="options-container">
                             <form action="/logout" method="post">
                                 <button type="submit" class="options_bt">Logout</button>

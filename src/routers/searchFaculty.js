@@ -30,11 +30,7 @@ router.get('/search-faculty', setOption, async (req, res) => {
         }
 
         if (search_query) {
-            if (search_query.toLowerCase() === 'internship') {
-                query.internship = { $ne: '' };
-            } else {
-                query.name = { $regex: search_query, $options: 'i' };
-            }
+            query.name = { $regex: search_query, $options: 'i' };
         }
 
         query.verified = true;
