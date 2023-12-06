@@ -1,5 +1,11 @@
 # FacultyHub
 
+# Visit Website 
+https://facultyhub.onrender.com/
+
+# Demonstration Video of our Project
+https://youtu.be/iERw0RV6NOw
+
 ## Group-9-Faculty-Staff-Directory-For-Multiuniversity
 
 Online faculty staff directory empowers users to easily view college faculty details. Students can easily view different college faculty details anywhere required at any time, as this application is handy. This system is built with an effective graphical user interface, which enables user-friendliness. User can search faculty details and view their respective details such as name, department, courses, area of expertise, and professional interest. This system reduced the time and cost of the user. Here, two entities will access this system, i.e. admin and student. Admin is authorized to add and manage all the faculty details. The user doesn’t require any registration or log in to access this system. User can directly search for faculty and view their details. Data in the database are maintained securely without any maintenance cost.
@@ -8,6 +14,7 @@ Online faculty staff directory empowers users to easily view college faculty det
 
 - [What is this?](#what-is-this)
 - [Features](#features)
+- [User Guide](#user-guide)
 - [Contributers](#contributers)
 
 ## What is this?
@@ -23,6 +30,31 @@ Online Faculty Staff directory for multi university is a fully responsive websit
 - User filtering and search
 - Real-time database management and access
 - User filtering and search
+
+## User-Guide
+Clone this repository:
+
+```
+git clone https://github.com/KrupS-DAIICT/IT314_Project.git
+```
+
+Install npm packages:
+
+```
+npm i
+```
+
+Start working:
+
+```
+npm start
+```
+
+## Demo
+
+<a href="https://facultyhub.onrender.com/">Web Application Link </a>
+
+
 
 ## Contributers
 
