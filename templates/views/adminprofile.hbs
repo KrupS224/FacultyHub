@@ -29,32 +29,6 @@
             var edit = document.getElementById("editBtn");
             edit.disabled = false;
         }
-
-        document.getElementById('myFile').addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const previewImage = document.getElementById('img1');
-                    previewImage.src = e.target.result;
-
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-
-        document.getElementById('LogoFile').addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const previewImage = document.getElementById('img2');
-                    previewImage.src = e.target.result;
-
-                }
-                reader.readAsDataURL(file);
-            }
-        });
     </script>
 </head>
 
@@ -132,6 +106,33 @@
             </div>
         </div>
 
+        <script>
+            document.getElementById('myFile').addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const previewImage = document.getElementById('img1');
+                        previewImage.src = e.target.result;
+
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            document.getElementById('LogoFile').addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const previewImage = document.getElementById('img2');
+                        previewImage.src = e.target.result;
+
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
 
     </main>
     {{>footer}}
