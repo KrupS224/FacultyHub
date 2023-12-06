@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FacultyHub</title>
-    {{!-- <link rel="stylesheet" href="faculty_profileStyle.css"> --}}
+    <link rel="stylesheet" href="../css/faculty_search_profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -99,7 +99,28 @@
                     <div class="content">
                         <h2>Internships</h2>
                         {{#each faculty.internship}}
-                            <p>{{this}}</p> {{!-- frontend part --}}
+                            <div class="content1">
+                                <div class="In_card">
+                                    <div class="imgBx">
+                                        <img src="../../images/OIP.jpeg" alt="">
+                                    </div>
+                                    <div class="details">
+
+                                        <h2>{{this.name}} <a href="mailto:{{../profile.email}}">
+                                                <img src="../../images/avatar.png" alt=""></a><br>
+                                            <span>{{../profile.name}} </span>
+                                        </h2>
+                                        <h2>Internships Details</h2>
+                                        <!-- <button onclick="removeIntership('/faculty-profile/remove-internship/{{this._id}}')"
+                                        class="btn1"><i class="fa fa-trash"></i></button> -->
+                                        <p><strong>Field:</strong>{{this.field}}</p>
+                                        <p><strong>Position:</strong>{{this.position}}</p>
+                                        <p><strong>Duration:</strong> {{this.duration}}</p>
+                                        <p><strong>Description:</strong>{{this.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <p>{{this}}</p> {{!-- frontend part --}} -->
                         {{/each}}
                     </div>
                 {{/if}}

@@ -21,7 +21,8 @@
                     <p><input class="rb" type="radio" name="role" value="faculty"> Faculty</p>
                 </div>
                 <label for="username">Email</label>
-                <input class="ip" type="email" name="username" required>
+                <input class="ip" type="email" name="username" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    required>
                 <label for="password">Password</label>
                 <input class="ip" type="password" name="password" required>
                 <div class="bt">

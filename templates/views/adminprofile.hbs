@@ -86,23 +86,23 @@
 
                         <div>
                             <label>Full Name:</label>
-                            <input disabled type="text" name="name" class="form-control" value="{{profile.name}}"
-                                required>
+                            <input disabled type="text" name="name" pattern="[A-Za-z]+" class="form-control"
+                                value="{{profile.name}}" required>
                         </div>
                         <div>
                             <label>Email: </label>
-                            <input disabled type="email" name="email" class="form-control" value="{{profile.email}}"
-                                required>
+                            <input disabled type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                class="form-control" value="{{profile.email}}" required>
                         </div>
 
                         <div>
                             <label>Mobile No: </label>
-                            <input disabled type="text" name="mobile_no" class="form-control" value="{{profile.phone}}"
-                                required>
+                            <input disabled type="text" name="mobile_no" pattern="[0-9]{10}" class="form-control"
+                                value="{{profile.phone}}" required>
                         </div>
                         <div>
                             <label>University: </label>
-                            <input disabled type="text" name="university" class="form-control"
+                            <input disabled type="text" pattern="[a-zA-Z -]+" name="university" class="form-control"
                                 value="{{profile.university}}" required>
                         </div>
                         <div>

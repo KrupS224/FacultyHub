@@ -9,29 +9,22 @@
     {{!-- This is JavaScript funcionallty--}}
     <script>
         function showAdminDetails() {
-
-
             document.getElementById('admin_details').style.display = 'flex';
             document.getElementById('university_details').style.display = 'none';
             document.getElementById('red').style.display = 'none';
             document.getElementById('submit').style.display = 'none';
             document.getElementById('green').style.display = 'block';
-
             // document.getElementById('green').setAttribute('onclick', 'showUniversityDetails()');
         }
-
         function showUniversityDetails() {
-
             let valid = true;
-            const fields = document.querySelectorAll(#admin_details[required]);
-
+            const fields = document.querySelectorAll(`#admin_details [required]`);
             fields.forEach(field => {
                 if (!field.checkValidity()) {
                     valid = false;
                     field.reportValidity();
                 }
             });
-
             if (valid) {
                 document.getElementById('university_details').style.display = 'flex';
                 document.getElementById('admin_details').style.display = 'none';
@@ -39,10 +32,7 @@
                 document.getElementById('submit').style.display = 'block';
                 document.getElementById('red').style.display = 'block';
             }
-
-
         }
-
         function submitForm() {
             // Add any form submission logic here
             document.forms[0].submit();
@@ -61,31 +51,31 @@
                 {{!-- first divison  --}}
                 <div id="admin_details">
                     <label for="name">Full Name</label>
-                    <input class="ip" type="text" name="adminName" maxlength="25" required autofocus>
+                    <input class="ip" type="text" name="adminName" maxlength="25" required>
                     <label for="email">Email</label>
                     <input class="ip" type="email" name="email" id="email" required>
                     <span id="emailError" style="color: red; font-size: smaller;"></span>
                     <label for="Password">Password</label>
                     <input class="ip" type="password" name="password" id="Password"
                         pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*?[#!@$%^&*_+-=]).{8,32}$"
-                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and the length of the pasword should be between 8 to 32"
+                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and be at least 8 characters long"
                         required>
                     <span id="passwordError" style="color: red; font-size: smaller"></span>
-                    <label for="cPassword">Confirm Password</label>
+                    <label for="cPassword">Conform Password</label>
                     <input class="ip" type="password" name="cPassword" id="cPassword"
                         pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*?[#!@$%^&*_+-=]).{8,32}$"
-                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and the length of the pasword should be between 8 to 32"
+                        title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from #!@$%^&*_+-=, and be at least 8 characters long"
                         required>
                     <span id="cPasswordError" style="color: red; font-size: smaller"></span>
                     <label for="mobile_no">Mobile no</label>
                     <input class="ip" type="tel" name="mobile_no" pattern="[0-9]{10}" required>
                     <label for="university">Admin Photo</label>
-                    <input type="file" name="admin_img" style="margin-left: 20px;" id="input_file" accept="image/*">
+                    <input type="file" name="admin_img" style="margin-left: 20px;" id="input_file">
                 </div>
                 {{!-- Second div --}}
                 <div id="university_details" style="display: none; flex-direction: column;">
-                    <label for="name">University Name</label>
-                    <input class="ip" type="text" name="university" required autofocus>
+                    <label for="name">University Name*</label>
+                    <input class="ip" type="text" pattern="[A-Za-z -]+" name="university" required autofocus>
                     <label for="email">Address</label>
                     <textarea class="ip" name="address" style="height: 150px;" id="texta" maxlength="150" minlength="10"
                         required></textarea>
@@ -96,7 +86,7 @@
           <input type="file" name="Government Proof" style="margin: 2px 0px 2px 20px;"> --}}
                 </div>
                 {{!-- This button html is also changed by onclick --}}
-                <div class="bt" style="display: flex;">
+                <div class="bt">
                     <button type="button" value="Submit" id="green" onclick="showUniversityDetails()">Next</button>
                     <button type="submit" value="Submit" id="submit" style="display: none;">Submit</button>
 
@@ -107,7 +97,7 @@
                     Already have an account? <a href="/signin">sign in.</a>
                 </p>
             </form>
-            <img id="up" src="../../images/sign_up.png" alt="sign_up">
+            <img id="up" src="images/sign_up.png" alt="sign_up">
         </section>
     </main>
     {{>footer}}

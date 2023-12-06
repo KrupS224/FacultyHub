@@ -64,12 +64,16 @@ h1{
     background-color: rgb(255, 255, 255);  
 
 }
+.content_box .content h2{
+  padding-right: 15%;
+  margin-bottom: 1vw;
+}
 .tab_box{
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-around;
-    padding: 10px;
+    padding: 1vw 5vw;
   
     
 }
@@ -236,12 +240,15 @@ footer{
     align-items: center;
     
 }
+.card-body form{
+  padding-right: 10vw;
+}
 
 
 
 /* available internships */
 .content_box .content{
-  padding-left: 30%;
+  padding-left: 25%;
 }
 .content_box .imgBx {
 
@@ -270,7 +277,7 @@ footer{
 .content_box .details h2{
     margin: 0;
     padding: 0;
-    font-size: 1vw;
+    font-size: 1.4vw;
     line-height: 1em;
     color: #444;
 }
@@ -326,7 +333,7 @@ footer{
     border-radius: 0.2vw;
     padding-right: 3px;
     padding-left: 3px;
-   margin-top: 5px;
+   margin-top: -4vw;
 
   }
 
@@ -349,29 +356,16 @@ footer{
 
 }
 
-#myDIV p{
-
-    margin-bottom: 0;
-
-}
-.detail button {
-    cursor: pointer;
-      border-radius: 5px;
-      background-color: black;
-      font-size: 10px; 
-      color: #ffffff; 
-      margin: 4px;
-      padding: 0.4vw 1.4vw; 
-  }
-
-
 
 
 /* responsive for internships */
 @media (max-width:768px){
+    .content_box .content{
+        padding-left: 0;
+    }
     .content_box .content1 .In_card{
-        width: 85vw;
-        height: 25vw;
+        width: 92vw;
+        height: 64vw;
         justify-content: center;
         margin:15px 0px;
     }
@@ -392,7 +386,7 @@ footer{
     .content_box .details h2{
 
         padding: 1vw;
-        font-size: 4vw;
+        font-size: 5vw;
         color: #444;
     }
     
@@ -404,13 +398,14 @@ footer{
         color: #999;
     }
     .content_box .imgBx img{
+        margin-top: 0.7vw;
         margin-left: 1vw;
         width: 18vw;
         height: 18vw;
         
     }
 
-   
+
 
     .content_box .details a img{
         width: 5vw;
@@ -422,12 +417,12 @@ footer{
         padding-right: 8vw;
     }
     .btn1{
-        margin-top: -1vw;  
+        margin-top: -14vw;  
         margin-right: 1vw; 
-        padding-left: 4.5px;
+        padding-left: 5.5px;
         width: 7vw;
         height: 8vw;
-        font-size: 5.5vw;
+        font-size: 5vw;
     
     }
     #myDIV {
@@ -440,12 +435,16 @@ footer{
             font-size: 1vw; 
             padding: 0.2vw 1vw; 
         }
+        #myDIV p{
+            margin-bottom: 0;
+        }
         
 
-}
-#myDIV p{
-    margin-bottom: 0;
+        }
+        #myDIV p{
+            margin-bottom: 0;
 
+        }
 }
 #myDIV {
     
