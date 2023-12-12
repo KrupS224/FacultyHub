@@ -3,3 +3,4 @@ node_modules/
 templates/views/otpverified.hbs
 src/routers/otpverified.js
 package-lock.json
+.gitignore
